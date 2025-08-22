@@ -1,0 +1,5 @@
+﻿  function.c
+  main.c
+  Generating Code...
+Z:\Desktop\Lab3\Lab3\function.c(68): warning C4715: 'insertContactInOrder': not all control paths return a value
+  Lab3.vcxproj -> Z:\Desktop\Lab3\Debug\Lab3.exe

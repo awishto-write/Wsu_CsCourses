@@ -1,0 +1,28 @@
+﻿  function.c
+Z:\Desktop\Lab4\Lab4\function.c(19,16): warning C4133: 'return': incompatible types - from 'StackNode *' to 'Stack *'
+Z:\Desktop\Lab4\Lab4\function.c(34,8): error C2039: 'pNext': is not a member of 'stack'
+Z:\Desktop\Lab4\Lab4\header.h(13): message : see declaration of 'stack'
+Z:\Desktop\Lab4\Lab4\function.c(35,19): warning C4133: '=': incompatible types - from 'Stack *' to 'StackNode *'
+Z:\Desktop\Lab4\Lab4\function.c(49,1): warning C4133: 'initializing': incompatible types - from 'StackNode *' to 'Stack *'
+  main.c
+Z:\Desktop\Lab4\Lab4\main.c(5,1): error C2085: 'main': not in formal parameter list
+Z:\Desktop\Lab4\Lab4\main.c(5,1): error C2143: syntax error: missing ';' before '{'
+Z:\Desktop\Lab4\Lab4\main.c(7,2): error C2143: syntax error: missing ';' before '{'
+Z:\Desktop\Lab4\Lab4\main.c(11,15): warning C4013: 'isEmptys' undefined; assuming extern returning int
+Z:\Desktop\Lab4\Lab4\main.c(12,3): error C2143: syntax error: missing ')' before '{'
+Z:\Desktop\Lab4\Lab4\main.c(19,3): error C2143: syntax error: missing ';' before '}'
+  testStack.c
+Z:\Desktop\Lab4\Lab4\testStack.c(4,1): error C2082: redefinition of formal parameter 'TestIsEmptyStack'
+Z:\Desktop\Lab4\Lab4\testStack.c(4,1): error C2143: syntax error: missing ';' before '{'
+Z:\Desktop\Lab4\Lab4\testStack.c(5,8): error C2065: 'Stack': undeclared identifier
+Z:\Desktop\Lab4\Lab4\testStack.c(5,8): error C2146: syntax error: missing ';' before identifier 'stack'
+Z:\Desktop\Lab4\Lab4\testStack.c(5,13): error C2065: 'stack': undeclared identifier
+Z:\Desktop\Lab4\Lab4\testStack.c(6,7): error C2065: 'stack': undeclared identifier
+Z:\Desktop\Lab4\Lab4\testStack.c(6,8): error C2224: left of '.top' must have struct/union type
+Z:\Desktop\Lab4\Lab4\testStack.c(6,18): error C2065: 'NULL': undeclared identifier
+Z:\Desktop\Lab4\Lab4\testStack.c(8,14): warning C4013: 'isEmptys' undefined; assuming extern returning int
+Z:\Desktop\Lab4\Lab4\testStack.c(8,21): error C2065: 'stack': undeclared identifier
+Z:\Desktop\Lab4\Lab4\testStack.c(9,2): error C2143: syntax error: missing ')' before '{'
+Z:\Desktop\Lab4\Lab4\testStack.c(10,9): warning C4013: 'printf' undefined; assuming extern returning int
+Z:\Desktop\Lab4\Lab4\testStack.c(16,2): error C2143: syntax error: missing ';' before '}'
+  Generating Code...

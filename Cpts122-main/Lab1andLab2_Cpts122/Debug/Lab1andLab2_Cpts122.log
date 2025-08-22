@@ -1,0 +1,7 @@
+﻿  function.c
+Z:\Desktop\Lab1andLab2_Cpts122\function.c(65,1): warning C4090: 'initializing': different 'const' qualifiers
+Z:\Desktop\Lab1andLab2_Cpts122\function.c(66,1): warning C4090: 'initializing': different 'const' qualifiers
+  main.c
+  Generating Code...
+Z:\Desktop\Lab1andLab2_Cpts122\function.c(59): warning C4172: returning address of local variable or temporary: arr3
+  Lab1andLab2_Cpts122.vcxproj -> Z:\Desktop\Lab1andLab2_Cpts122\Debug\Lab1andLab2_Cpts122.exe

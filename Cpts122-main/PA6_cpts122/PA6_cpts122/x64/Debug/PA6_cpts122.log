@@ -1,0 +1,3 @@
+﻿  main.cpp
+\\Mac\Home\Desktop\PA6_cpts122\PA6_cpts122\BST.h(233): warning C4715: 'BST<char,std::basic_string<char,std::char_traits<char>,std::allocator<char> > >::searches': not all control paths return a value
+  PA6_cpts122.vcxproj -> \\Mac\Home\Desktop\PA6_cpts122\x64\Debug\PA6_cpts122.exe

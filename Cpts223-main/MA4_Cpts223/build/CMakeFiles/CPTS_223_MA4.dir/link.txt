@@ -1,0 +1,1 @@
+/Library/Developer/CommandLineTools/usr/bin/c++  -Wall -Xpreprocessor -fopenmp -I/opt/homebrew/opt/libomp/include -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names -L/opt/homebrew/opt/libomp/lib CMakeFiles/CPTS_223_MA4.dir/main.cpp.o -o CPTS_223_MA4  /opt/homebrew/opt/libomp/lib/libomp.dylib 

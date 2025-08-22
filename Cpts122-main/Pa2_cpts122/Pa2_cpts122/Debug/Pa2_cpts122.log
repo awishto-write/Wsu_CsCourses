@@ -1,0 +1,9 @@
+﻿  function.c
+Z:\Desktop\Pa2_cpts122\Pa2_cpts122\function.c(153,23): warning C4133: '=': incompatible types - from 'Node *' to 'node *'
+Z:\Desktop\Pa2_cpts122\Pa2_cpts122\function.c(297,24): warning C4133: '=': incompatible types - from 'node *' to 'Node *'
+Z:\Desktop\Pa2_cpts122\Pa2_cpts122\function.c(315,25): warning C4133: 'function': incompatible types - from 'node *' to 'Node *'
+Z:\Desktop\Pa2_cpts122\Pa2_cpts122\function.c(331,23): warning C4133: '=': incompatible types - from 'node *' to 'Node *'
+Z:\Desktop\Pa2_cpts122\Pa2_cpts122\function.c(343,23): warning C4133: '=': incompatible types - from 'node *' to 'Node *'
+  main.c
+  Generating Code...
+  Pa2_cpts122.vcxproj -> Z:\Desktop\Pa2_cpts122\Debug\Pa2_cpts122.exe

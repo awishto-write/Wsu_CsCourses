@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32126.315
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Lab6-cpts122(Queue)", "Lab5-cpts122\Lab5-cpts122.vcxproj", "{E42F9BBD-3010-4C9A-A5B9-C65DB05E405C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E42F9BBD-3010-4C9A-A5B9-C65DB05E405C}.Debug|x64.ActiveCfg = Debug|x64
+		{E42F9BBD-3010-4C9A-A5B9-C65DB05E405C}.Debug|x64.Build.0 = Debug|x64
+		{E42F9BBD-3010-4C9A-A5B9-C65DB05E405C}.Debug|x86.ActiveCfg = Debug|Win32
+		{E42F9BBD-3010-4C9A-A5B9-C65DB05E405C}.Debug|x86.Build.0 = Debug|Win32
+		{E42F9BBD-3010-4C9A-A5B9-C65DB05E405C}.Release|x64.ActiveCfg = Release|x64
+		{E42F9BBD-3010-4C9A-A5B9-C65DB05E405C}.Release|x64.Build.0 = Release|x64
+		{E42F9BBD-3010-4C9A-A5B9-C65DB05E405C}.Release|x86.ActiveCfg = Release|Win32
+		{E42F9BBD-3010-4C9A-A5B9-C65DB05E405C}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {10E1663B-99CC-4A60-ADD9-2274C4A16CDD}
+	EndGlobalSection
+EndGlobal

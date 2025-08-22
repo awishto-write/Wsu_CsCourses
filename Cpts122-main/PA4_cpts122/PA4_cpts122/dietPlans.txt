@@ -1,0 +1,27 @@
+Bacon and Eggs
+130
+12/24/2020
+
+Bread
+150
+10/21/2021
+
+Plantain
+170
+02/13/2022
+
+Spinash
+110
+01/23/2022
+
+Yogurt
+180
+01/25/2022
+
+Rice and Fish
+100
+03/23/2022
+
+Ice Cream
+125
+03/25/2022

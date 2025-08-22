@@ -1,0 +1,27 @@
+Weight Lifting
+175
+03/01/2022
+
+Running
+160
+02/28/2022
+
+Jumping
+180
+01/21/2022
+
+Dumbbell Rows
+140
+03/21/2022
+
+Squats
+170
+01/23/2022
+
+Stretch
+130
+04/24/2022
+
+Push-Ups
+150
+02/15/2022
