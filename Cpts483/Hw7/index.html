@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+
+   <head>
+      <style>
+        body {}
+
+        canvas {
+            width: 800px;
+            height: 600px;
+        }
+
+        #the-canvas {
+            border: 1px solid darkblue;
+        }
+      </style>
+    </head>
+
+  <body>
+    <div id="imageIDs"></div>
+    <link rel="stylesheet" type="text/css" href="./keyboardKeyDisplay/imageDisplay.css">
+    <script src="keyboardKeyDisplay/key_printer.js"></script>
+    <canvas id="the-canvas" width="800" height="600"></canvas>
+    <script src="lib.js"></script>
+    <script src="vector.js"></script>
+    <script src="matrix.js"></script>
+    <script src="mesh.js"></script>
+    <script src="controls.js"></script>
+    <script src="cam.js"></script>
+
+    <script>
+        let canvas = document.getElementById('the-canvas');
+        /** @type {WebGLRenderingContext} */
+        let gl = canvas.getContext('webgl2');
+
+        // Vertex shader for textured cube
+        let vertex_source = `#version 300 es
+            precision mediump float;
+
+            uniform mat4 modelview;
+            in vec3 coordinates;
+            in vec2 uv;
+
+            out vec2 v_uv;
+
+            void main(void) {
+                gl_Position = modelview * vec4(coordinates, 1.0);
+                v_uv = uv;
+            }
+        `;
+
+        // Fragment shader for textured cube
+        let fragment_source = `#version 300 es
+            precision mediump float;
+
+            in vec2 v_uv;
+            uniform sampler2D texture_sampler;
+
+            out vec4 f_color;
+
+            void main(void) {
+                f_color = texture(texture_sampler, v_uv);
+            }
+        `;
+
+        let shader_program = create_compile_and_link_program(gl, vertex_source, fragment_source);
+        gl.useProgram(shader_program);
+
+        // Load texture from image
+        function loadTexture(gl, url) {
+            const texture = gl.createTexture();
+            gl.bindTexture(gl.TEXTURE_2D, texture);
+
+            // Temporary 1x1 pixel (magenta) until the real texture loads
+            const pixel = new Uint8Array([255, 0, 255, 255]);
+            gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, 1, 1, 0, gl.RGBA, gl.UNSIGNED_BYTE, pixel);
+
+            const image = new Image();
+            image.src = url;
+            image.onload = () => {
+                gl.bindTexture(gl.TEXTURE_2D, texture);
+                gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, image);
+
+                gl.generateMipmap(gl.TEXTURE_2D);
+                gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+                gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+                gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR_MIPMAP_LINEAR);
+               // gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+                gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+            };
+
+            return texture;
+        }
+
+        const texture = loadTexture(gl, './texture_map.png');
+        bind_texture_samplers(gl, shader_program, 'texture_sampler');
+
+        set_render_params(gl);
+
+        let last_update = performance.now();
+        const DESIRED_TICK_RATE = 60;
+        const DESIRED_MSPT = 1000.0 / DESIRED_TICK_RATE;
+
+        const ROTATION_SPEED = 0.125; // eighth turn per second
+        const ROTATION_SPEED_PER_FRAME = ROTATION_SPEED / DESIRED_TICK_RATE;
+
+        const FLY_SPEED = 1; // units per second
+        const FLY_SPEED_PER_FRAME = FLY_SPEED / DESIRED_TICK_RATE;
+
+        let keys = Keys.start_listening();
+        let cam = new Camera();
+        cam.translate(0, 0, -1.5);
+
+        let mesh = Mesh.box(gl, shader_program, 1, 1, 1);
+        let projection = Mat4.perspective_fovx(0.25, 4 / 3, 0.25, 64);
+
+        function render(now) {
+          //  gl.enable(gl.DEPTH_TEST); // Added
+            gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+
+            let model = Mat4.identity();
+
+            model = model.mul(projection);
+            model = model.mul(cam.get_view_matrix()); 
+            set_uniform_matrix4(gl, shader_program, 'modelview', model.data); 
+
+            mesh.render(gl);
+
+            requestAnimationFrame(render);
+        }
+
+        const KEYMAP = {
+            'KeyW': () => cam.move_in_direction(0, 0, FLY_SPEED_PER_FRAME),
+            'KeyS': () => cam.move_in_direction(0, 0, -FLY_SPEED_PER_FRAME),
+            'KeyA': () => cam.move_in_direction(-FLY_SPEED_PER_FRAME, 0, 0),
+            'KeyD': () => cam.move_in_direction(FLY_SPEED_PER_FRAME, 0, 0),
+            'Space': () => cam.translate(0, FLY_SPEED_PER_FRAME, 0),
+            'KeyC': () => cam.translate(0, -FLY_SPEED_PER_FRAME, 0),
+            'KeyQ': () => cam.add_roll(-ROTATION_SPEED_PER_FRAME),
+            'KeyE': () => cam.add_roll(ROTATION_SPEED_PER_FRAME),
+            'ArrowLeft': () => cam.add_yaw(-ROTATION_SPEED_PER_FRAME),
+            'ArrowRight': () => cam.add_yaw(ROTATION_SPEED_PER_FRAME),
+            'ArrowUp': () => cam.add_pitch(-ROTATION_SPEED_PER_FRAME),
+            'ArrowDown': () => cam.add_pitch(ROTATION_SPEED_PER_FRAME),
+        };
+
+        function update() {
+            keys.keys_down_list().forEach(key => {
+                const func = KEYMAP[key];
+                if (func) func();
+            });
+        }
+
+        requestAnimationFrame(render);
+        setInterval(update, DESIRED_MSPT);
+    </script>
+  </body>
+
+</html>

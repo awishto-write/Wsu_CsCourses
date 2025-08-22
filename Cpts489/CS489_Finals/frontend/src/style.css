@@ -1,0 +1,91 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.outer-container {
+    display: flex;
+    justify-content: center;
+    padding: 10px 10px;
+    background-color: #eaeaea;
+}
+
+.content-box {
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    width: 100%;
+}
+
+.title {
+    text-align: center;
+    color: #3653ab;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.subheading {
+    text-align: center;
+    color: #b30000;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.petition-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.petition-form input,
+.petition-form select {
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.petition-form button {
+    margin-top: 6px;
+    background-color: #1a5cff;
+    color: white;
+    border: none;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.petition-form button:hover {
+    background-color: #0044cc;
+}
+
+.signatures-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.signatures-table th,
+.signatures-table td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+}
+.signatures-table tr:first-child {
+    background-color: #f2f2f2;
+}
+
+.signatures-table th {
+    background-color: white;
+}
+.signatures-table tr:hover {
+    background-color: #e0f0ff; 
+    transition: background-color 0.2s ease-in-out;
+}

@@ -1,0 +1,451 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "IBM Plex Sans", sans-serif;
+} 
+body {
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    font-family: "IBM Plex Sans", sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/*        Main Navbar         */
+.main-navbar {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    gap: 20px;
+    height: 135px; 
+    position: relative;
+    font-family: "IBM Plex Sans", sans-serif;
+    color: rgb(63, 63, 63);
+    flex-direction: column;
+    width: 100%;
+}
+.nav-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.college-name {
+    font-size: 10px;
+}
+.college-name ul {
+    font-size: 10px;
+    margin-top: -4px; 
+    margin-left: 3px; /* Move slightly to the right */
+} 
+.college-name ul li{
+    display: inline-block;
+}
+.college-name ul li:first-child {
+    color: rgb(197, 22, 140);
+    font-weight: 600;
+}
+.college-name ul li:nth-child(3) {
+    color: rgb(72, 15, 115);
+    font-weight: 600;
+}
+.college-name ul li:nth-child(5) {
+    color: rgb(0, 94, 132);
+    font-weight: 600;
+}
+   
+.separator-college {
+    width: 1px; /* Thin vertical line */
+    display: inline-block;
+    height: 26px; 
+    background-color: rgb(68, 68, 68);
+    margin-bottom: -4px;
+    margin-right: 4px;
+    margin-left: 4px;
+}
+.separator-college2 {
+    width: 1px;
+    height: 20px;
+    background-color: rgb(68, 68, 68); 
+    margin: 0 10px; /* Adjusted spacing between items */
+}
+
+.department-name {
+    margin-top: 3px;
+    font-size: 41px;
+    font-weight: bold;
+    color: black;
+}
+.logo {
+    height: 67px; 
+    margin-right: -5px; 
+}
+.nav-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 10px 20px;
+    position: relative; /* Ensures the right section stays inside */
+}
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 17px;
+    margin-left: 22px;
+}
+.nav-top-right {
+    position: absolute;  /* Ensures it sits at the top */
+    top: 0;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    right: 45px;
+    bottom: 40px;
+}
+.top-nav-links {
+    color: black;
+    display: flex;
+    align-items: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+
+.top-nav-links li {
+    display: flex;
+    align-items: center;
+    gap: 5px; 
+    font-size: 14px;
+    font-weight: 500;
+}
+.top-nav-links i {
+    font-size: 16px;
+}
+.mit-logo {
+    height: 35px;
+    width: auto;
+    margin-left: 20px; 
+}
+
+/* Navigation Dividers */
+.nav-divider {
+    height: 18px;
+    width: 1px;
+    background-color: black;
+}
+
+.nav-bottom {
+    position: absolute;  /* Ensures it sits at the top */
+    right: -5px;
+    display: flex;
+    align-items: center;
+    margin-bottom: -55px;
+}
+
+.nav-center li {
+    display: inline-block;
+}
+
+/* Bottom Navigation Links */
+.nav-center {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.nav-center li a {
+    white-space: nowrap;
+    text-decoration: none;
+    color: black;
+    font-weight: 501;
+    font-size: 15px;
+    letter-spacing: 0.8px;
+}
+
+.nav-center li:nth-child(6) a {
+    margin-right: 50px;
+}
+
+
+/* Page Layout (Sidebar + Main Content) */
+.separator {
+    width: 1px; /* Thin vertical line */
+    height: 70px; 
+    background-color: rgb(183, 181, 181); 
+}
+
+.page-container {
+    display: flex;
+    flex-direction: row;
+    overflow-y: auto; 
+}
+.container {
+    display: flex;
+    max-width: 1200px;
+    margin: 250px auto 0;
+}
+.sidebar {
+    width: 310px;
+    display: flex; 
+    flex-direction: column; 
+    background-color: white;
+    margin-left: 62px;
+    margin-top: -20px;
+}
+.sidebar nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.sidebar nav ul li {
+    font-size: 16px;
+    box-sizing: border-box; 
+    margin-left: 0; 
+    padding-left: 20px; 
+    width: 90%; 
+}
+.sidebar nav ul li:first-child a {
+    height: 60px; 
+    display: flex; 
+    align-items: center; 
+    font-weight: bold;
+    border-bottom: 2px solid black; 
+}
+.sidebar nav ul li a {
+    display: block; 
+    padding: 12px 18px;
+    text-decoration: none;
+    color: #323030;
+    font-weight: 501;
+    border-bottom: 2px solid #ddd;  
+    box-sizing: border-box; 
+} 
+
+
+/*       Main Content       */
+.main-content {
+    flex: 1; 
+    overflow-y: auto; 
+    padding: 329px;
+    margin-top: -429px;
+}
+.box {
+    padding: 66px;
+    display: flex;
+    align-items: center;
+    gap: 25px; 
+}
+.prof {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    margin-left: 400px;
+    margin-bottom: -186px;
+}
+
+.inner {
+    display: flex; 
+    flex-direction: column; /* Stacks items vertically */
+    justify-content: center; 
+    font-family: "IBM Plex Sans", sans-serif;
+    margin-top: 245px;
+    margin-left: 300px;
+    white-space: nowrap;
+}
+.inner a {
+    color: #0a0073;
+    text-decoration: none;
+    font-weight: 400;
+    margin-top: 20px;
+}
+.contact-item-first {
+    display: flex;
+    align-items: center; 
+    gap: 8px; 
+    margin-top: -100px; 
+    font-size: 18px;
+    font-weight: 400;
+}
+.contact-item {
+    display: flex;
+    align-items: center; 
+    gap: 8px; 
+    margin-bottom: 4px; 
+    font-weight: 400;
+}
+.contact-item i {
+    font-size: 17px; 
+    color: #0a0073;
+    font-weight: 400;
+}
+.contact-item-website a {
+    position: relative;
+    top: -10px; /* Moves "Website" text slightly up */
+}
+
+
+.header {
+    background-color: rgb(10, 0, 115);
+    color: white;
+    position: relative;
+    height: 203px;
+}
+.header-start ul {
+    display: flex;
+    align-items: center; /* Ensures all elements align properly */
+    gap: 6px;
+}
+.header-start {
+    height: 73px; 
+    margin-left: 402px;
+}
+.header-start ul li {
+    margin-top: 45px; 
+    font-size: 14px;
+}
+.header-start li {
+    display: inline-block;
+}
+.header-start li :nth-child(2) {
+    display: inline-block;
+}
+.header-start li :nth-child(3) {
+    display: inline-block;
+    font-size: 12px;
+}
+.header-start li:first-child i {
+    display: inline-block;
+    font-size: 20px;
+    margin-top: 3px; /* Moves the home icon slightly down */
+}
+.header-second {
+    margin-left: 402px;
+    font-family: "IBM Plex Sans", sans-serif;
+}
+.header-second h1{
+    font-size: 52px;
+    font-weight: 600;
+}
+
+
+/* Gradient Top Border */
+.footer-before {
+    margin-top: auto; 
+    text-align: center;
+    padding: 20px 5px;
+    /* padding: 20px 0; */
+    background-color: #191919;
+    background-image: url(https://www.eecs.mit.edu/wp-content/uploads/2021/06/MIT_EECS_pattern-repeat_black_000000.svg);
+    background-size: 90px;
+    color: white;
+    width: 100%;
+    border-top: 5px solid;
+    border-image-source: linear-gradient(90deg, #b31e8d, #652d90 51%, #00819a);
+    border-image-slice: 1;
+    height: 304px;
+}
+
+/* Top section of the footer */
+.footer-top {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 55px;
+    text-align: left;
+    font-size: 14px;
+}
+.footer-right {
+    width: 30%;
+    text-align: right;
+}
+.footer-center {
+    width: 30%;
+    margin-right: 400px;
+}
+
+.footer-center p {
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 14px;
+}
+.footer-left {
+    width: 30%;
+    font-size: 13px;
+}
+.social-icons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 22px;
+    margin-bottom: 40px;
+}
+
+.social-icons i {
+    font-size: 25px;
+    color: white;
+}
+.footer-divider {
+    width: 93%;
+    height: 1.5px;
+    background-color: grey;
+    margin: 20px auto;
+    margin-bottom: 5px;
+    margin-top: 10px;
+}
+.footer-bottom {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 295px;
+    padding: 20px 70px;
+    margin-bottom: -15px;
+}
+.logos {
+    display: block;
+}
+.logo-1 {
+    height: 36px; /* MIT Schwarzman */
+}
+
+.logo-2 {
+    height: 46px; /* MIT EECS */
+}
+
+.logo-3 {
+    height: 60px; /* MIT School of Engineering */
+}
+
+
+/* Research Box (Right Sidebar) */
+.research-box {
+    background: #d9f1f7;
+    padding: 20px;
+    width: 310px;
+    margin-left: 742px;
+    height: 175px;
+    margin-top: -160px;
+}
+.research-box h5 {
+    margin-bottom: 10px;
+    margin-top: 10px;
+    font-size: 16px;
+}
+.research-box ul {
+    list-style: none;
+}
+.research-box ul li {
+    margin-bottom: 5px;
+}
+.research-box ul li a {
+    color: #0a0073;;
+    text-decoration: none;
+    font-weight: 500;
+}
+.research-box ul li:last-child {
+    margin-bottom: 0;
+} 

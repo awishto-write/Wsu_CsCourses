@@ -1,0 +1,13 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "lldb",
+      "request": "launch",
+      "args": [],
+      "cwd": "/Users/sherryldion-gokan/Desktop/cpts360_hw6/chardev",
+      "program": "/Users/sherryldion-gokan/Desktop/cpts360_hw6/chardev/build/Debug/outDebug"
+    }
+  ]
+}

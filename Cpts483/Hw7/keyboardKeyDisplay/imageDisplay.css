@@ -1,0 +1,120 @@
+/* styles.css
+top: amount of pixels "down" from the top of the relative area
+left: amount of pixels "right" from the left of the relative area
+width: width of image
+height: height of image
+*/
+
+.container {
+    position: relative;
+    width: 1280px;
+    height: 800px;
+}
+
+.overlay-imageW {
+    display: none;
+    position: absolute ;
+    top: 0px;
+    left: 105px;
+    width: 100px;
+    height: 100px;
+}
+
+.overlay-imageA {
+    display: none;
+    position: absolute ;
+    top: 105px;
+    left: 0px;
+    width: 100px; 
+    height: 100px;
+}
+
+.overlay-imageS {
+    display: none;
+    position: absolute ;
+    top: 105px;
+    left: 105px;
+    width: 100px; 
+    height: 100px;
+}
+
+.overlay-imageD {
+    display: none;
+    position: absolute ;
+    top: 105px;
+    left: 210px;
+    width: 100px; 
+    height: 100px;
+}
+
+.overlay-imageQ {
+    display: none;
+    position: absolute ;
+    top: 0px;
+    left: 0px;
+    width: 100px;
+    height: 100px;
+}
+
+.overlay-imageE {
+    display: none;
+    position: absolute ;
+    top: 0px;
+    left: 210px;
+    width: 100px;
+    height: 100px;
+}
+
+.overlay-imageC {
+    display: none;
+    position: absolute ;
+    top: 210px;
+    left: 0px;
+    width: 100px; 
+    height: 100px;
+}
+
+.overlay-imageSpace {
+    display: none;
+    position: absolute ;
+    top: 210px;
+    left: 105px;
+    width: 210px; 
+    height: 100px;
+}
+
+.overlay-imageUp {
+    display: none;
+    position: absolute ;
+    top: 0px;
+    left: 1075px;
+    width: 100px; 
+    height: 100px;
+}
+
+.overlay-imageDown {
+    display: none;
+    position: absolute ;
+    top: 105px;
+    left: 1075px;
+    width: 100px; 
+    height: 100px;
+}
+
+.overlay-imageLeft {
+    display: none;
+    position: absolute ;
+    top: 105px;
+    left: 970px;
+    width: 100px; 
+    height: 100px;
+}
+
+.overlay-imageRight {
+    display: none;
+    position: absolute ;
+    top: 105px;
+    left: 1180px;
+    width: 100px; 
+    height: 100px;
+}

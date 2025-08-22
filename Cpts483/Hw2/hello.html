@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            body { 
+                display: flex;
+                justify-content: center; 
+                flex-direction: column;
+            }
+            canvas {
+                width: 800;
+                height: 600;
+            }
+            #render-button {
+                width: 180px;
+                height: 50px;
+                font-size: 24pt;
+            }
+            #the-canvas { border: 1px solid darkblue; }
+            #user-matrix input { width: 32px; font-size: 24px; }
+        </style>
+    </head>
+
+    <body>
+        <canvas id = "the-canvas" width = "800" height = "600"></canvas>
+        <script src = "lib.js"></script>
+        <script src = "matrix.js"></script>
+	    <script src = "vector.js"></script>
+        
+        <div>
+            <p style="font-size: x-large; margin-bottom: 5px;">Matrix: </p>
+            <table id ="user-matrix">
+                <tr>
+                    <td><input type="text" id="matrix-data-0" value="1"></td>
+                    <td><input type="text" id="matrix-data-1" value="0"></td>
+                    <td><input type="text" id="matrix-data-2" value="0"></td>
+                    <td><input type="text" id="matrix-data-3" value="0"></td>
+                </tr>
+                <tr>
+                    <td><input type="text" id="matrix-data-4" value="0"></td>
+                    <td><input type="text" id="matrix-data-5" value="1"></td>
+                    <td><input type="text" id="matrix-data-6" value="0"></td>
+                    <td><input type="text" id="matrix-data-7" value="0"></td>
+                </tr>
+                <tr>
+                    <td><input type="text" id="matrix-data-8" value="0"></td>
+                    <td><input type="text" id="matrix-data-9" value="0"></td>
+                    <td><input type="text" id="matrix-data-10" value="1"></td>
+                    <td><input type="text" id="matrix-data-11" value="0"></td>
+                </tr>
+                <tr>
+                    <td><input type="text" id="matrix-data-12" value="0"></td>
+                    <td><input type="text" id="matrix-data-13" value="0"></td>
+                    <td><input type="text" id="matrix-data-14" value="0"></td>
+                    <td><input type="text" id="matrix-data-15" value="1"></td>
+                </tr>
+            </table>
+            <input id="render-button" type="button" value ="Render" onclick="render()">
+        </div>
+
+        <script>
+            let canvas = document.getElementById( 'the-canvas' );
+            
+            /** @type {WebGLRenderingContext} */
+            let gl = canvas.getContext( 'webgl2' );
+
+            let verts = [ 
+                -0.5, -0.25, 0.0,   1.0, 0.0, 0.0, 1.0,
+                0, 0.6, 0.0,        0.0, 1.0, 0.0, 1.0,
+                0.5, -0.25, 0.0,    0.0, 0.0, 1.0, 1.0, 
+            ];
+
+            let vertex_buffer = create_and_load_vertex_buffer(gl, verts, gl.STATIC_DRAW);
+            
+            let vertex_source = 
+            `   #version 300 es
+                precision mediump float;
+
+                uniform mat4 modelview;
+
+                in vec3 coordinates;
+                in vec4 color;
+
+                out vec4 v_color;
+
+                void main( void ) {
+                    gl_Position = modelview * vec4( coordinates, 1.0 );
+                    v_color = color;
+                }
+            `;
+            
+            let fragment_source = 
+            `   #version 300 es
+                precision mediump float;
+
+                in vec4 v_color;
+
+                out vec4 f_color;
+
+                void main( void ) {
+                    f_color = v_color;
+                }
+            `;
+
+            let shader_program = 
+                create_compile_and_link_program( gl, vertex_source, fragment_source );
+            gl.useProgram( shader_program );
+
+            VERTEX_STRIDE = 28;
+
+            set_vertex_attrib_to_buffer( 
+                gl, shader_program, 
+                "coordinates", 
+                vertex_buffer, 3, 
+                gl.FLOAT, false, VERTEX_STRIDE, 0 
+            );
+
+            set_vertex_attrib_to_buffer( 
+                gl, shader_program, 
+                "color", 
+                vertex_buffer, 4, 
+                gl.FLOAT, false, VERTEX_STRIDE, 12
+            );
+
+            set_render_params( gl );
+
+            function load_matrix_from_user_input() {
+                let data = new Array();
+                // load the model matrix from user input
+                for( let i = 0; i < 16; i++ ) {
+                   // data.push( parseInt( document.getElementById( 'matrix-data-' + i ).value ) );
+                    data.push( parseFloat( document.getElementById( 'matrix-data-' + i ).value ) );
+                }
+
+                return new Mat4( data );
+            }
+
+            function render() {
+                gl.clear( gl.COLOR_BUFFER_BIT );
+
+                let model = load_matrix_from_user_input();
+                
+                set_uniform_matrix4( 
+                   // gl, shader_program, "modelview", model.data );
+                    gl, shader_program, "modelview", new Float32Array(model.data))
+                gl.drawArrays( gl.TRIANGLES, 0, 3 );
+            }
+            
+            render();
+			
+			const rot_xz = Mat4.rotation_xz( .25 );
+			const rot_xy = Mat4.rotation_xy( .25 );
+			const rot_yz = Mat4.rotation_yz( .25 );
+			const translate = Mat4.translation( 4, 3, 5 );
+			const scale = Mat4.scale( 2, 3, 4 );
+			const mul = scale.mul( translate );
+			const vec = new Vec4( 1, 2, 0.5, 1 );
+			
+			console.log( 'Quarter turn XZ rotation: ', rot_xz.toString() ); 
+			console.log( 'Quarter turn XY rotation: ', rot_xy.toString() ); 
+			console.log( 'Quarter turn YZ rotation: ', rot_yz.toString() ); 
+			console.log( 'Translate by 4, 3, 5: ', translate.toString() );
+			console.log( 'Scale by 2, 3, 4: ', scale.toString() );
+			console.log( 'Translate and then scale: ', mul.toString() );
+			console.log( 'Transform a vector with the preceding matrix: ', 
+				mul.transform_vec(vec).toString() );
+			
+			const vec2 = new Vec4( 3, 6, 9, 1 );
+			const scaled = vec.scaled( 10 );
+			const dot = vec.dot( vec2 );
+			const length = vec2.length();
+			const norm = vec2.norm();
+			const add = vec.add( vec2 );
+			
+			console.log( 'Vector multiplied by scaler: ' , scaled.toString() );
+			console.log( 'Vector dot vector: ', dot.toString() );
+			console.log( 'Vector length: ', length );
+			console.log( 'Vector norm: ', norm.toString() );
+			console.log( 'Vector add: ', add.toString() );
+			
+			const rot_xz2 = Mat4.rotation_xz( .125 );
+			const rot_xy2 = Mat4.rotation_xy( .125 );
+			const rot_yz2 = Mat4.rotation_yz( .125 );
+			const translate2 = Mat4.translation( -1, 9, 3 );
+			const scale2 = Mat4.scale( 0.2, -0.1, 19 );
+			const mul2 = scale2.mul( translate2 );
+			const vec3 = new Vec4( 3, -3, 2, 0 );
+			
+			console.log( '1/8th turn XZ rotation: ', rot_xz2.toString() ); 
+			console.log( '1/8th turn XY rotation: ', rot_xy2.toString() ); 
+			console.log( '1/8th turn YZ rotation: ', rot_yz2.toString() ); 
+			console.log( 'Translate by -1, 9, 3: ', translate2.toString() );
+			console.log( 'Scale by 0.2, -0.1, 19: ', scale2.toString() );
+			console.log( 'Translate and then scale: ', mul2.toString() );
+			console.log( 'Transform a vector with the preceding matrix: ', 
+				mul2.transform_vec(vec3).toString() );
+			
+			const vec4 = new Vec4( 3, 6, 9, 1 );
+			const scaled2 = vec3.scaled( 10 );
+			const dot2 = vec3.dot( vec4 );
+			const length2 = vec3.length();
+			const norm2 = vec3.norm();
+			const add2 = vec3.add( vec4 );
+			
+			console.log( 'Vector multiplied by scaler: ' , scaled2.toString() );
+			console.log( 'Vector dot vector: ', dot2.toString() );
+			console.log( 'Vector length: ', length2 );
+			console.log( 'Vector norm: ', norm2.toString() );
+			console.log( 'Vector add: ', add2.toString() );
+
+            
+        </script>
+
+        
+    </body>
+</html>

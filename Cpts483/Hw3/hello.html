@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            body { 
+                display: flex;
+                justify-content: center; 
+                flex-direction: column;
+            }
+            canvas {
+                width: 800;
+                height: 600;
+            }
+            #render-button {
+                width: 180px;
+                height: 50px;
+                font-size: 24pt;
+            }
+            #the-canvas { border: 1px solid darkblue; }
+        </style>
+    </head>
+
+    <body>
+        <canvas id="the-canvas" width="800" height="600"></canvas>
+        <script src="lib.js"></script>
+        <script type="module">
+            import { rotation_xy, rotation_xz, rotation_yz, animate } from './vector.js'; 
+    
+            let canvas = document.getElementById('the-canvas');
+            let gl = canvas.getContext('webgl2');
+    
+            let verts = [
+                0.0, 0.5, 0.0, 1.0, 0.0, 0.0, 1.0, 
+                -0.5, -0.5, 0.0, 0.0, 1.0, 0.0, 1.0, 
+                0.5, -0.5, 0.0, 0.0, 0.0, 1.0, 1.0  
+            ];
+    
+            let vertex_buffer = create_and_load_vertex_buffer(gl, verts, gl.STATIC_DRAW);
+    
+            let vertex_source = 
+            `#version 300 es
+            precision mediump float;
+    
+            uniform mat4 rotationMatrixXY; 
+            uniform mat4 rotationMatrixXZ;  
+            uniform mat4 rotationMatrixYZ;
+    
+            in vec3 coordinates;
+            in vec4 color;
+    
+            out vec4 v_color;
+    
+            void main(void) {
+                gl_Position = rotationMatrixXY * rotationMatrixXZ * rotationMatrixYZ * vec4(coordinates, 1.0);
+                v_color = color;
+            }`;
+    
+            let fragment_source = 
+            `#version 300 es
+            precision mediump float;
+    
+            in vec4 v_color;
+    
+            out vec4 f_color;
+    
+            void main(void) {
+                f_color = v_color;
+            }`;
+    
+            // Compile and link shaders into the program
+            const program = create_compile_and_link_program(gl, vertex_source, fragment_source);
+            gl.useProgram(program);
+    
+            // Attach the vertex buffer to the shader attributes
+            set_vertex_attrib_to_buffer(gl, program, 'coordinates', vertex_buffer, 3, gl.FLOAT, false, 0, 0);
+            set_vertex_attrib_to_buffer(gl, program, 'color', vertex_buffer, 4, gl.FLOAT, false, 0, 3 * Float32Array.BYTES_PER_ELEMENT); // Adjust offset for color
+    
+            let last = 0;
+            let rotations = { 'XY': 0, 'XZ': 0, 'YZ': 0 };
+    
+            // WebGL settings
+            gl.clearColor(0.0, 0.0, 0.0, 1.0);
+            gl.enable(gl.DEPTH_TEST);
+            gl.clear(gl.COLOR_BUFFER_BIT);
+    
+            // Start the animation
+            requestAnimationFrame((time) => {
+                animate(gl, program, time, last, rotations);
+            });
+        </script>
+    </body>
+</html>

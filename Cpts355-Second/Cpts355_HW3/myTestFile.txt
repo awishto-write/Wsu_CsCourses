@@ -1,0 +1,3 @@
+Task - Recommend products to users based on their history .
+It implies recommending 1000 products to users based 
+on products commonly ordered ; commonly ordered together among users %

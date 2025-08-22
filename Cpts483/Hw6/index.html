@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Simple Camera</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+        }
+        canvas {
+            border: 1px solid darkblue;
+        }
+    </style>
+  </head>
+  <body>
+    <canvas id="the-canvas" width="800" height="600"></canvas>
+    <script src="./node_modules/gl-matrix/gl-matrix-min.js"></script>
+    <script src="lib.js"></script>
+    <script src="mesh.js"></script>
+    <script src="script.js"></script>
+    <script src="matrix.js"></script>  
+  </body>
+</html>
